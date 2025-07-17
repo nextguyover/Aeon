@@ -63,3 +63,8 @@ The generated `.slc` files can then be copied to the `/images` directory of the 
 ## Schematic and PCB Design
 
 The `/schematic_and_PCB` directory contains the KiCad schematic and PCB design files for Aeon.
+
+## Future Development
+
+This is a list of possible future work, and bugs that have been identified over extended usage:
+- [ ] Battery voltage measurement values read 0V after several weeks of use. Potentially from to damage to measurement pin due to voltage going above 3.3V, which exceeds maximum voltage rating when PB1 is in analog mode. Possible fix by using pin in digital mode (which is 5V tolerant), and setting PB1 to analog mode only when BATT_VDIV_EN is set.
