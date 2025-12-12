@@ -1,6 +1,7 @@
 import os
 import subprocess
 import argparse
+import random
 
 from PIL import Image, ImageEnhance, ImageOps
 
@@ -106,7 +107,7 @@ def process_image(input_path: str, output_path: str, palette: Image) -> None:
     print(f"Saved dithered image to {output_path}")
 
 
-def process_images(input_dir: str, intermediary_dir: str) -> None:
+def process_images(input_dir: str, intermediary_dir: str, randomise: bool = False) -> None:
     """
     Process all supported images found in the input directory:
     
@@ -120,16 +121,21 @@ def process_images(input_dir: str, intermediary_dir: str) -> None:
     
     palette = create_custom_palette()
     
-    for filename in os.listdir(input_dir):
-        if filename.lower().endswith(('.jpg', '.jpeg', '.png', '.heic')):
-            print(f'Processing {filename}...')
-            input_path = os.path.join(input_dir, filename)
-            
-            basename = os.path.splitext(filename)[0]
-            output_filename = f"{basename}_dithered.bmp"
-            output_path = os.path.join(intermediary_dir, output_filename)
-            
-            process_image(input_path, output_path, palette)
+    files = os.listdir(input_dir)
+    files = [f for f in files if f.lower().endswith(('.jpg', '.jpeg', '.png', '.heic'))]
+
+    if randomise:
+        random.shuffle(files)
+
+    for index, filename in enumerate(files):
+        print(f'Processing {filename}...')
+        input_path = os.path.join(input_dir, filename)
+        
+        basename = os.path.splitext(filename)[0]
+        output_filename = f"{index}_dithered_{basename}_.bmp"
+        output_path = os.path.join(intermediary_dir, output_filename)
+        
+        process_image(input_path, output_path, palette)
 
 
 def run_slic_conv(input_dir: str, output_dir: str) -> None:
@@ -148,9 +154,10 @@ def run_slic_conv(input_dir: str, output_dir: str) -> None:
     # sort files by name
     files.sort()
 
-    for index, file in enumerate(files):
+    for file in files:
         infile = os.path.join(input_dir, file)
-        outfile = os.path.join(output_dir, f"{index}.slc")
+        basename = os.path.splitext(file)[0].split('_')[0]
+        outfile = os.path.join(output_dir, f"{basename}.slc")
         
         print(f"Running slic_conv: {infile} -> {outfile}")
         subprocess.run(['slic_conv', infile, outfile], check=True)
@@ -162,6 +169,7 @@ def main():
     """
     parser = argparse.ArgumentParser(description="Convert images for the e-ink display")
     parser.add_argument("input_dir", help="Input images directory")
+    parser.add_argument("--random", action="store_true", help="Randomise order of images when converting")
     args = parser.parse_args()
 
     input_img_dir = args.input_dir
@@ -175,7 +183,7 @@ def main():
     if os.path.exists(output_dir):
         os.system(f'rm -r {output_dir}')
 
-    process_images(input_img_dir, intermediary_dir)
+    process_images(input_img_dir, intermediary_dir, args.random)
     run_slic_conv(intermediary_dir, output_dir)
 
 
