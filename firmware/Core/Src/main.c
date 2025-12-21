@@ -359,10 +359,12 @@ int main(void) {
 
                 printf(".");
             }
+            
+            // each image byte stores data of two consecutive pixels (4 bits each)
+            uint8_t pixel_data = pixel_buf[PIXEL_BUF_SIZE - pix_buf_remaining];
 
-            uint8_t color = pixel_buf[PIXEL_BUF_SIZE - pix_buf_remaining];
-
-            disp_send_data((color << 4) | color);
+            // this sends two 4-bit pixels as one byte
+            disp_send_data(pixel_data);
             pix_buf_remaining--;
         }
     }
