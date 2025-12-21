@@ -8,7 +8,7 @@ from PIL import Image, ImageEnhance, ImageOps
 from pillow_heif import register_heif_opener  # Support for HEIC images
 register_heif_opener()
 
-def scale(image: Image, target_width=400, target_height=480) -> Image:
+def scale(image: Image, target_width=800, target_height=480) -> Image:
     """
     Scale an image by resizing and centrally cropping it to target dimensions.
     
@@ -81,7 +81,7 @@ def process_image(input_path: str, output_path: str, palette: Image) -> None:
     
     1. Open the image from the input path.
     2. Apply EXIF orientation corrections.
-    3. Adjust image size (reduce width by half) and scale to target dimensions.
+    3. Adjust image size by scaling to target dimensions.
     4. Enhance colors to improve dithering.
     5. Convert the image using the custom palette.
     6. Save the processed (dithered) image to the output path.
@@ -91,12 +91,8 @@ def process_image(input_path: str, output_path: str, palette: Image) -> None:
     # Correct orientation based on EXIF data
     transposed_image = ImageOps.exif_transpose(original_image)
 
-    # Adjust image size: reduce width by half (as an example adjustment)
-    width, height = transposed_image.size
-    adjusted_image = transposed_image.resize((width // 2, height), Image.Resampling.LANCZOS)
-
     # Scale image to target dimensions
-    scaled_image = scale(adjusted_image)
+    scaled_image = scale(transposed_image)
 
     # Enhance image color for a better dithering result
     enhanced_image = ImageEnhance.Color(scaled_image).enhance(3)
