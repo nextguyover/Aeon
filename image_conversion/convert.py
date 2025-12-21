@@ -102,8 +102,35 @@ def process_image(input_path: str, output_path: str, palette: Image) -> None:
     dithered_image.save(output_path)
     print(f"Saved dithered image to {output_path}")
 
+def pack_image(input_path: str, output_path: str) -> None:
+    """
+    Pack the image by combining two 4-bit pixels into one byte.
+    
+    Steps:
+    1. Open the dithered image.
+    2. Create a new image for the packed data.
+    3. Iterate through the pixels, combining two 4-bit pixel values into one byte.
+    4. Save the packed image to the output path.
+    """
+    img = Image.open(input_path)
+    width, height = img.size
+    packed_img = Image.new("P", (width // 2, height))
+    packed_pixels = packed_img.load()
+    original_pixels = img.load()
 
-def process_images(input_dir: str, intermediary_dir: str, randomise: bool = False) -> None:
+    for y in range(height):
+        for x in range(0, width, 2):
+            pixel1 = original_pixels[x, y] & 0x0F  # Get lower 4 bits
+            pixel2 = original_pixels[x + 1, y] & 0x0F  # Get lower 4 bits
+            packed_pixel = (pixel1 << 4) | pixel2  # Combine into one byte
+            packed_pixels[x // 2, y] = packed_pixel
+
+    packed_img.putpalette(img.getpalette())
+    packed_img.save(output_path)
+    print(f"Saved packed image to {output_path}")
+
+
+def process_images(input_dir: str, intermediary_dir: str, packed_dir: str, randomise: bool = False) -> None:
     """
     Process all supported images found in the input directory:
     
@@ -111,9 +138,11 @@ def process_images(input_dir: str, intermediary_dir: str, randomise: bool = Fals
     2. Create the custom palette to be reused for all images.
     3. Iterate through each image file in the input directory.
     4. For each supported image format (.jpg, .jpeg, .png, .heic),
-       process the image and save a dithered version in the intermediary directory.
+       a. process the image and save a dithered version in the intermediary directory.
+       b. save final packed (two 4-bit pixels into one byte) image in packed directory
     """
     ensure_directory(intermediary_dir)
+    ensure_directory(packed_dir)
     
     palette = create_custom_palette()
     
@@ -132,6 +161,9 @@ def process_images(input_dir: str, intermediary_dir: str, randomise: bool = Fals
         output_path = os.path.join(intermediary_dir, output_filename)
         
         process_image(input_path, output_path, palette)
+
+        packed_output_path = os.path.join(packed_dir, f"{index}_packed_{basename}_.bmp")
+        pack_image(output_path, packed_output_path)
 
 
 def run_slic_conv(input_dir: str, output_dir: str) -> None:
@@ -170,17 +202,20 @@ def main():
 
     input_img_dir = args.input_dir
     intermediary_dir = './img_intermediary'
+    packed_dir = './img_packed'
     output_dir = './img_out'
 
     # clear intermediary and output directories
     if os.path.exists(intermediary_dir):
         os.system(f'rm -r {intermediary_dir}')
+    if os.path.exists(packed_dir):
+        os.system(f'rm -r {packed_dir}')
 
     if os.path.exists(output_dir):
         os.system(f'rm -r {output_dir}')
 
-    process_images(input_img_dir, intermediary_dir, args.random)
-    run_slic_conv(intermediary_dir, output_dir)
+    process_images(input_img_dir, intermediary_dir, packed_dir, args.random)
+    run_slic_conv(packed_dir, output_dir)
 
 
 if __name__ == "__main__":
