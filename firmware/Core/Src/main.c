@@ -107,7 +107,7 @@ int __io_putchar(int ch) {
     return (ch);
 }
 
-int img_slic_open_callback(const char *filename, SLICFILE *pFile) {
+int img_slic_open_callback(const char* filename, SLICFILE* pFile) {
     FRESULT fres;
 
     fres = f_open(&img_file_ptr, filename, FA_READ);
@@ -121,7 +121,7 @@ int img_slic_open_callback(const char *filename, SLICFILE *pFile) {
     return 0;
 }
 
-int img_slic_read_callback(SLICFILE *pFile, uint8_t *pBuf, int32_t iLen) {
+int img_slic_read_callback(SLICFILE* pFile, uint8_t* pBuf, int32_t iLen) {
     UINT bytesRead;
     FRESULT fres;
 
@@ -221,8 +221,14 @@ int main(void) {
         if (DBG)
             printf("Battery voltage is %.2fV, below threshold of %.2fV\n",
                    batt_voltage, BATT_THRESHOLD);
-        fram_set_sleep_reason(SLEEP_REASON_LOW_BATT);
-        enter_sleep(12 * 60 * 60);  // sleep for 12 hours
+
+        if (DISABLE_BATT_THRESHOLD_CHECK) {
+            if (DBG)
+                printf("Battery threshold check disabled, continuing...\n");
+        } else {
+            fram_set_sleep_reason(SLEEP_REASON_LOW_BATT);
+            enter_sleep(12 * 60 * 60);  // sleep for 12 hours
+        }
     }
     if (DBG)
         printf("Battery voltage is %.2fV, above threshold of %.2fV\n",
@@ -351,7 +357,7 @@ int main(void) {
             if (pix_buf_remaining == 0) {
                 spi_device_select(AEON_SPI_SD);
 
-                slic_decode(&slic_state, (uint8_t *)&pixel_buf,
+                slic_decode(&slic_state, (uint8_t*)&pixel_buf,
                             sizeof(pixel_buf));
                 pix_buf_remaining = sizeof(pixel_buf);
 
@@ -359,8 +365,9 @@ int main(void) {
 
                 printf(".");
             }
-            
-            // each image byte stores data of two consecutive pixels (4 bits each)
+
+            // each image byte stores data of two consecutive pixels (4 bits
+            // each)
             uint8_t pixel_data = pixel_buf[PIXEL_BUF_SIZE - pix_buf_remaining];
 
             // this sends two 4-bit pixels as one byte
@@ -732,7 +739,7 @@ void Error_Handler(void) {
  * @param  line: assert_param error line source number
  * @retval None
  */
-void assert_failed(uint8_t *file, uint32_t line) {
+void assert_failed(uint8_t* file, uint32_t line) {
     /* USER CODE BEGIN 6 */
     /* User can add his own implementation to report the file name and line
        number, ex: printf("Wrong parameters value: file %s on line %d\r\n",
