@@ -112,6 +112,10 @@ extern RNG_HandleTypeDef hrng;
 
 #define DBG (DBG_SWO_EN || runtime_debug_mode)
 
+#define DISABLE_BATT_THRESHOLD_CHECK \
+    false  // set to true to disable functionality where device relies on ADC
+           // battery measurement to return to sleep when battery is low
+
 #define BATT_LOGGING true  // enable battery logging to SD card
 
 #define SET_DEBUG_LED(x)                                  \

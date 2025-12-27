@@ -9,10 +9,6 @@
 #define BATT_THRESHOLD 3.65
 #define SLEEP_DURATION_DEFAULT 60 * 60 * 18  // 18 hours
 
-#define DISABLE_BATT_THRESHOLD_CHECK \
-    false  // set to true to disable functionality where device relies on ADC
-           // battery measurement to return to sleep when battery is low
-
 enum spi_device_t {
     AEON_SPI_NONE = 0,  // no device selected, all CS pins high
     AEON_SPI_DISP = 1,  // display
