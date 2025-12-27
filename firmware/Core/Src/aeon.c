@@ -205,6 +205,13 @@ void enter_sleep(int sleep_seconds) {
     // HAL_PWREx_EnableGPIOPullUp(AUX_PWR_EN_GPIO_Port, AUX_PWR_EN_Pin); //
     // enable pull-up on AUX PWR EN pin
 
+    // Disable wake-up pin first to clear any pending wake-up event
+    HAL_PWR_DisableWakeUpPin(PWR_WAKEUP_PIN1);
+    
+    // Clear all wake-up flags before enabling wake-up pin
+    // This prevents immediate re-wake if button is still pressed
+    __HAL_PWR_CLEAR_FLAG(PWR_FLAG_WU);
+    
     HAL_PWR_EnableWakeUpPin(PWR_WAKEUP_PIN1_HIGH);
 
     HAL_PWR_EnterSTANDBYMode();  // go to low power standby mode
