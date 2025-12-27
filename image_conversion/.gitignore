@@ -1,5 +1,6 @@
 SLIC/**
 img_intermediary/**
+img_packed/**
 img_out/**
 img_in/**
 slic_conv**
