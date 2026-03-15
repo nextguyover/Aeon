@@ -1,0 +1,340 @@
+(footprint "PTS526SMG15JSMTR2LFS"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "PTS526 SMG15J SMTR2 LFS-1")
+	(tags "Switch")
+	(property "Reference" "SW3"
+		(at -0.0052 3.5856 180)
+		(layer "F.SilkS")
+		(uuid "7129c0c3-837b-487a-8a6c-4c25926ba787")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Value" "RESET_BTN"
+		(at -0.1 5.2 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "338b4d73-03ca-426a-9949-7668bc2689a5")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Footprint" "Aeon:PTS526SMG15JSMTR2LFS"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "97ce0ec8-b32c-4196-8dd4-568da233d76e")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "9781ae76-039c-4656-85cc-334cff6b558e")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "Push button switch, generic, two pins"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "050a3659-5a8f-4bb4-aa61-d6e5e729b906")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Link" "https://au.mouser.com/ProductDetail/CK/PTS526-SK15-SMTR2-LFS"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "21062f70-ed8a-4818-a9f9-ea3aab40b0e6")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Purchase Qty" "50"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "8eee018d-4f66-4182-ae37-d8403cb72ab4")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Store" "Aliexpress"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "71cb655e-fcb7-4820-a633-fdf2339819cb")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Purchase Link" "https://www.aliexpress.com/item/1005001739975290.html"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "1f91f95d-5775-4f89-93d0-79f0cd979f2a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -3.8 -1.95)
+		(end -3.8 -1.95)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "bb6a64f7-9181-4198-990b-5884b4a68c46")
+	)
+	(fp_line
+		(start -3.8 -1.85)
+		(end -3.8 -1.85)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "c02a7a7b-1f31-4182-9e1b-c13a39731fe2")
+	)
+	(fp_line
+		(start -2.6 -1)
+		(end -2.6 1)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "55d18560-9ff3-43b2-9d72-e01686182e03")
+	)
+	(fp_line
+		(start -0.5 -2.6)
+		(end -2.6 -2.6)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "3f58cdf4-f7e8-4be3-8f51-75038df15da8")
+	)
+	(fp_line
+		(start 0.5 2.6)
+		(end 2.5 2.6)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "05f926a1-c4e8-43e6-9c42-f9f2828f2b58")
+	)
+	(fp_line
+		(start 2.6 -1)
+		(end 2.6 1)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "3e2f069a-8feb-4531-8b06-35318af8e6e0")
+	)
+	(fp_arc
+		(start -3.8 -1.95)
+		(mid -3.75 -1.9)
+		(end -3.8 -1.85)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "149cf94e-7d08-461d-8ead-b5df933d4d6b")
+	)
+	(fp_arc
+		(start -3.8 -1.85)
+		(mid -3.85 -1.9)
+		(end -3.8 -1.95)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "6886c47e-9c25-49c1-9f2b-c456dee88242")
+	)
+	(fp_line
+		(start -4 -3.5)
+		(end 4 -3.5)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "3a36c0ef-9c19-4608-949b-fe272a1b7999")
+	)
+	(fp_line
+		(start -4 3.5)
+		(end -4 -3.5)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "77be9e1e-a48e-4249-927f-cdc55783bda2")
+	)
+	(fp_line
+		(start 4 -3.5)
+		(end 4 3.5)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "617e46b0-aceb-418e-80d0-90c653a6e269")
+	)
+	(fp_line
+		(start 4 3.5)
+		(end -4 3.5)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "c9e955e5-df61-40fc-ae9d-fc2fbd87acee")
+	)
+	(fp_line
+		(start -2.6 -2.6)
+		(end 2.6 -2.6)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "805107b6-1de9-421c-b8e5-430c6d7fc213")
+	)
+	(fp_line
+		(start -2.6 2.6)
+		(end -2.6 -2.6)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "8cfac28b-c437-4a28-86d2-9412e79dbc38")
+	)
+	(fp_line
+		(start 2.6 -2.6)
+		(end 2.6 2.6)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "cf6949a9-2ca8-49a6-a8d6-82c73ce2b4c3")
+	)
+	(fp_line
+		(start 2.6 2.6)
+		(end -2.6 2.6)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "7affb480-abdd-4458-ad7d-d474c804add1")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "df3c7700-7ce6-42ef-9b50-73e7fcffa6cf")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -2.85 -1.85 90)
+		(size 0.7 1.3)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "d5f62465-f75c-4230-a623-08af329da30e")
+	)
+	(pad "1" smd rect
+		(at 2.85 -1.85 90)
+		(size 0.7 1.3)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "f6e07adb-0967-4703-adea-15056f638187")
+	)
+	(pad "2" smd rect
+		(at -2.85 1.85 90)
+		(size 0.7 1.3)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "77bcd8e4-5105-4f26-bccc-d9e42c402282")
+	)
+	(pad "2" smd rect
+		(at 2.85 1.85 90)
+		(size 0.7 1.3)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "e754aa2c-ce21-47e6-b994-339608bd36c0")
+	)
+	(model "PTS526_SMG15J_SMTR2_LFS.stp"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 0)
+		)
+	)
+	(model "${KIPRJMOD}/Symbols External/LIB_PTS526_SK15_SMTR2_LFS/PTS526_SK15_SMTR2_LFS.stp"
+		(offset
+			(xyz 0 0 0.52)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 90)
+		)
+	)
+)
