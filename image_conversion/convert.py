@@ -54,23 +54,23 @@ def ensure_directory(path: str) -> None:
 
 def create_custom_palette() -> Image:
     """
-    Create a custom palette for the 7-color e-ink display.
+    Create a custom palette for the 6-color e-ink display.
     
     Steps:
     1. Start with a new palette image.
-    2. Define the primary 7 colors.
+    2. Define the primary 6 colors.
     3. Fill the rest of the 256-color palette with a dummy color (black).
     """
     pal_image = Image.new("P", (1, 1))
     pal_image.putpalette(
         (
-            0, 0, 0, 
-            255, 255, 255, 
-            0, 255, 0, 
-            0, 0, 255, 
-            255, 0, 0, 
-            255, 255, 0, 
-            255, 125, 0
+            0, 0, 0,        # 0x0: black
+            255, 255, 255,  # 0x1: white
+            255, 255, 0,    # 0x2: yellow
+            255, 0, 0,      # 0x3: red
+            0, 0, 0,        # 0x4: unused
+            0, 0, 255,      # 0x5: blue
+            0, 255, 0,      # 0x6: green
         ) + (0, 0, 0) * 249)
     return pal_image
 
