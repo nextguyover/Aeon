@@ -11,35 +11,9 @@ register_heif_opener()
 def scale(image: Image, target_width=800, target_height=480) -> Image:
     """
     Scale an image by resizing and centrally cropping it to target dimensions.
-    
-    Steps:
-    1. Determine new dimensions while keeping the image proportional.
-    2. Resize the image using high-quality resampling.
-    3. Crop the resized image centrally to exact target size.
     """
-    width, height = image.size
-
-    if height / width < target_height / target_width:
-        print('too wide: cropping')
-        new_height = target_height
-        new_width = int(width * new_height / height)
-    else:
-        print('too tall: cropping')
-        new_width = target_width
-        new_height = int(height * new_width / width)
-
-    print(f"Original (h, w): ({height}, {width}) -> Scaled (h, w): ({new_height}, {new_width})")
-
-    # Resize image with high quality resampling
-    ANTIALIAS = Image.Resampling.LANCZOS
-    img = image.resize((new_width, new_height), ANTIALIAS)
-
-    # Calculate crop region for central crop
-    half_width_delta = (new_width - target_width) // 2
-    half_height_delta = (new_height - target_height) // 2
-    img = img.crop((half_width_delta, half_height_delta,
-                    half_width_delta + target_width, half_height_delta + target_height))
-    return img
+    print(f"Original (h, w): ({image.height}, {image.width}) -> Scaled (h, w): ({target_height}, {target_width})")
+    return ImageOps.fit(image, (target_width, target_height), Image.Resampling.LANCZOS)
 
 
 def ensure_directory(path: str) -> None:
@@ -95,7 +69,11 @@ def process_image(input_path: str, output_path: str, palette: Image) -> None:
     scaled_image = scale(transposed_image)
 
     # Enhance image color for a better dithering result
-    enhanced_image = ImageEnhance.Color(scaled_image).enhance(3)
+    enhanced_image = ImageEnhance.Color(scaled_image).enhance(1.5)
+
+    # Enhance contrast and brightness
+    enhanced_image = ImageEnhance.Contrast(enhanced_image).enhance(1.15)
+    # enhanced_image = ImageEnhance.Brightness(enhanced_image).enhance(1.1)
 
     # Convert image to use the custom 7-color palette with dithering
     dithered_image = enhanced_image.convert("RGB").quantize(palette=palette)
