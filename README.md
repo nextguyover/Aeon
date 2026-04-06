@@ -58,7 +58,7 @@ Next, install the required Python packages with `pip install -r requirements.txt
 
 To convert a directory of images, run `python convert.py <input_dir>` where `<input_dir>` is the directory containing the images to convert. The converted images will be saved in a new directory named `img_out`.
 
-The generated `.slc` files can then be copied to the `/images` directory of the SD card. *Do not rename the generated files.*
+Format the SD card in FAT32. The generated `.slc` files can then be copied to the `/images` directory of the SD card. *Do not rename the generated files.*
 
 ## Schematic and PCB Design
 
