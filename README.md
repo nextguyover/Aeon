@@ -2,8 +2,7 @@
 
 ![Aeon](aeon.jpg)
 
-Aeon is a solar-powered colour e-ink photo frame. See the [blogpost](https://insertnewline.com/blog/aeon/) for a full write-up.
-
+Aeon is a solar-powered colour e-ink photo frame designed around the [7.3inch Spectra 6](https://www.waveshare.com/7.3inch-e-paper-hat-e.htm) e-ink display. Powered using energy harvesting, Aeon achieves indefinite operation when placed in a bright indoor environment.
 
 This repository contains the following design files for Aeon. 
 
@@ -11,7 +10,10 @@ This repository contains the following design files for Aeon.
 - [Image Conversion Script](image_conversion)
 - [Schematic and PCB Design](schematic_and_PCB)
 
-See the the [blogpost](https://insertnewline.com/blog/aeon/) for additional file downloads.
+See the the [blogpost](https://insertnewline.com/blog/aeon/) for a full write-up and additional file downloads.
+
+Current Aeon version is v2.0, available on the [main branch](https://github.com/nextguyover/Aeon/tree/main). See older versions below:
+- [v1.4](https://github.com/nextguyover/Aeon/tree/v1.4) - Using discontinued [7.3inch ACeP](https://www.waveshare.com/7.3inch-e-paper-hat-f.htm) e-ink display
 
 ## Firmware
 
